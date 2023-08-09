@@ -45,29 +45,52 @@ public class OtherAPP {
 //        }
 
 
-        IntBuffer buffer = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
-        for (int i = 0; i < 4; i++) {
-            buffer.get();
-        }
-        buffer.put(55);
-        System.out.println("buffer：" + Arrays.toString(buffer.array()));
-        // flip: Flips this buffer. The limit is set to the current position and then the position is set to zero. If the mark is defined then it is discarded.
-        //  flip会改变limit的值，一般会设置为当前的读写位置；
-        buffer.flip();
-        while (buffer.hasRemaining()) {
-            System.out.print(buffer.get() + ", ");
-        }
-
-        // rewind:  rewind不会改变limit的值，一般会设置为capacity的值；
-        System.out.println("rewind1==>" + buffer.position());
-        buffer.rewind();
-        System.out.println("rewind2==>" + buffer.position());
+//        IntBuffer buffer = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
+//        for (int i = 0; i < 4; i++) {
+//            buffer.get();
+//        }
+//        buffer.put(55);
+//        System.out.println("buffer：" + Arrays.toString(buffer.array()));
+//        // flip: Flips this buffer. The limit is set to the current position and then the position is set to zero. If the mark is defined then it is discarded.
+//        //  flip会改变limit的值，一般会设置为当前的读写位置；
+//        buffer.flip();
+//        while (buffer.hasRemaining()) {
+//            System.out.print(buffer.get() + ", ");
+//        }
+//
+//        // rewind:  rewind不会改变limit的值，一般会设置为capacity的值；
+//        System.out.println("rewind1==>" + buffer.position());
+//        buffer.rewind();
+//        System.out.println("rewind2==>" + buffer.position());
 
         // clear: resets the limit to the capacity
 //        System.out.println("clear1==>" + buffer.position());
 //        buffer.clear();
 //        System.out.println("clear2==>" + buffer.position());
 //        System.out.println("clear2==>" + Arrays.toString(buffer.array()));
+
+
+        // equals比较剩余数据
+//        IntBuffer buffer1 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+//        IntBuffer buffer2 = IntBuffer.wrap(new int[]{6, 5, 4, 3, 2, 1, 7, 8, 9});
+//        System.out.println(buffer1.equals(buffer2));
+//
+//        buffer1.position(6);
+//        buffer2.position(6);
+//        System.out.println(buffer1.equals(buffer2));
+
+
+        // compareTo比较剩余数据
+        IntBuffer buffer1 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        IntBuffer buffer2 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 9, 8, 7});
+        System.out.println(buffer1.equals(buffer2));
+
+        buffer1.position(6);
+        buffer2.position(6);
+        buffer1.flip();
+        buffer2.flip();
+
+        System.out.println(buffer1.compareTo(buffer2));
 
     }
 
