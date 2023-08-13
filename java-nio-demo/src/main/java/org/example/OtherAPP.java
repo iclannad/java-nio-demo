@@ -81,16 +81,27 @@ public class OtherAPP {
 
 
         // compareTo比较剩余数据
-        IntBuffer buffer1 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
-        IntBuffer buffer2 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 9, 8, 7});
-        System.out.println(buffer1.equals(buffer2));
+//        IntBuffer buffer1 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+//        IntBuffer buffer2 = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 9, 8, 7});
+//        System.out.println(buffer1.equals(buffer2));
+//
+//        buffer1.position(6);
+//        buffer2.position(6);
+//        buffer1.flip();
+//        buffer2.flip();
+//
+//        System.out.println(buffer1.compareTo(buffer2));
 
-        buffer1.position(6);
-        buffer2.position(6);
-        buffer1.flip();
-        buffer2.flip();
+        // 只读buffer
+        IntBuffer buffer = IntBuffer.wrap(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9});
+        IntBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();
 
-        System.out.println(buffer1.compareTo(buffer2));
+        System.out.println(readOnlyBuffer.isReadOnly());
+        System.out.println(readOnlyBuffer.get());
+
+//        readOnlyBuffer.put(0,666);
+
+        readOnlyBuffer.array();
 
     }
 
