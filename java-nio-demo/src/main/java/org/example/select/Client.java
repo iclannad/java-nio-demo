@@ -8,7 +8,7 @@ public class Client {
 
     public static void main(String[] args) {
         // Java传统socket编程
-        try (Socket socket = new Socket("127.0.0.1", 8080);
+        try (Socket socket = new Socket("127.0.0.1", 9090);
              Scanner scanner = new Scanner(System.in)) {
             System.out.println("已连接到服务器");
             OutputStream stream = socket.getOutputStream();
