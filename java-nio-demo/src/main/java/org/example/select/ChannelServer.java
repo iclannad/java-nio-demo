@@ -14,7 +14,7 @@ import java.nio.channels.SocketChannel;
 public class ChannelServer {
 
     public static void main(String[] args) {
-        // Channel socket编程
+        // Channel socket编程,bio:每个socket都需要一个线程来读写数据。如果客户端增大，会极大消耗服务端资源,因此引出nio模型
         // 创建ServerSocketChannel
         try (ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
             // 绑定端口
