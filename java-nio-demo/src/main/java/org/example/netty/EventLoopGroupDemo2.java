@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 public class EventLoopGroupDemo2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(), workerGroup = new NioEventLoopGroup(1);  // limit thread count ==> 1
         EventLoopGroup handlerGroup = new DefaultEventLoopGroup();  //使用DefaultEventLoop来处理其他任务,类似于线程池
         ServerBootstrap bootstrap = new ServerBootstrap();
@@ -43,6 +43,12 @@ public class EventLoopGroupDemo2 {
                                 });
                     }
                 });
-        bootstrap.bind(9090);
+        // 异步
+        ChannelFuture future = bootstrap.bind(9090);
+        // 监听回调
+        future.addListener(f -> System.out.println("Doing after starting！"));
+//        future.sync();  // wait for done
+        System.out.println("Server start=："+future.isDone());
+
     }
 }
